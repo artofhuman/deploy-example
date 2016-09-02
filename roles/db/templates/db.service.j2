@@ -1,0 +1,12 @@
+[Unit]
+Description=Run database
+
+[Service]
+Type=simple
+PIDFile=/var/tmp/pids/db.pid
+
+ExecStart=/usr/bin/docker run --name db --rm -v /var/lib/postgresql/data:/var/lib/postgresql/data postgres:9.4
+ExecStop==/usr/bin/docker rm -f db
+
+[Install]
+WantedBy=multi-user.target

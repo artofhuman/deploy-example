@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - shell: docker pull registry.gitlab.com/artofhuman/gost-stroy
+
+    - name: 'Run migrations'
+      shell: /usr/bin/apprunner.sh ./bin/rails db:migrate
+
+- hosts: all
+  gather_facts: no
+  tasks:
+    - service: name=rails_server state=restarted
+      become: yes
+      tags: [rails_server, app]
+

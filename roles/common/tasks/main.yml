@@ -1,0 +1,4 @@
+---
+- name: 'Copy apprunner'
+  template: 'src=apprunner.sh.j2 dest=/usr/bin/apprunner.sh owner=root group=root mode=0700'
+  tags: [conf]

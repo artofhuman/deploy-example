@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+: ${RUN_ARGS:=''}
+
+# TODO --read-only
+COMMAND="/usr/bin/docker run --rm \
+    $RUN_ARGS \
+    -v /tmp:/tmp \
+    -v /var/tmp:/var/tmp \
+    -v /app/public/uploads:/app/public/uploads \
+    -e DB_HOST=db \
+    -e DB_PORT=5432 \
+    -e RAILS_SERVE_STATIC_FILES=True \
+    --link db \
+    {{ image }} $@"
+
+eval $COMMAND

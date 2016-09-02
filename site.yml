@@ -1,0 +1,13 @@
+---
+- name: Configure servers
+  hosts: all
+  remote_user: root
+
+  vars:
+    image: registry.gitlab.com/artofhuman/gost-stroy
+
+  roles:
+    - angstwad.docker_ubuntu
+    - common
+    - db
+    - rails_server

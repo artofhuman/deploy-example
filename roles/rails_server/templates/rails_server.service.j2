@@ -1,0 +1,13 @@
+[Unit]
+Description=Rails server
+
+[Service]
+Type=simple
+
+Environment="RUN_ARGS=--name rails -p 80:3000"
+
+ExecStart=/usr/bin/apprunner.sh ./bin/rails s
+ExecStop=/usr/bin/docker rm -f rails_server
+
+[Install]
+WantedBy=multi-user.target
